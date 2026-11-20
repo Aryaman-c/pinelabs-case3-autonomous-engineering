@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  orchestrator:
+    container_name: autonomous-eng-org-orchestrator
+    build:
+      context: .
+      dockerfile: Dockerfile.orchestrator
+    volumes:
+      - ./data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file: .env
+    ports:
+      - "8000:8000"
+    command: uvicorn api.server:app --host 0.0.0.0 --port 8000 --reload
+
+  sandbox:
+    container_name: autonomous-eng-org-sandbox
+    build:
+      context: .
+      dockerfile: Dockerfile.sandbox
+    network_mode: none
+    cap_drop:
+      - ALL
+    pids_limit: 64
+    mem_limit: 512m
+    user: "1000:1000"
+    volumes:
+      - sandbox_workspace:/workspace
+    command: tail -f /dev/null
+
+volumes:
+  sandbox_workspace:
