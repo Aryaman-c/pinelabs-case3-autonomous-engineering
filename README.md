@@ -1,4 +1,4 @@
-# 🌲 Pine: Autonomous Engineering Organisation
+# Pine: Autonomous Engineering Organisation
 
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![Docker](https://img.shields.io/badge/docker-containerized-2496ED.svg)](https://www.docker.com/)
